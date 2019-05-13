@@ -15,9 +15,20 @@ function main() {
     q.unasked = res;
     for (let i=q.unasked.length-1;i >= 0;i--) {
       let newQuestion = new Question(q.unasked[i]);
-      console.log(newQuestion);
+      let answers = newQuestion.randomizeAnswers();
+      console.log(answers);
+      // newQuestion.userAnswer = answers[1];
+      console.log(newQuestion.correctAnswer);
+      console.log(newQuestion.checkUserAnswer(answers[1]));
+      if (newQuestion.checkUserAnswer(answers[1])) {
+        q.updateScore();
+      }
+      console.log(`Score: ${q.score}`);
       q.askQuestion();
     }
+    q.endGame();
+    console.log(q.scoreHistory);
+    
 
 
 

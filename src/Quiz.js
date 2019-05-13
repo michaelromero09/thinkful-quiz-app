@@ -25,6 +25,15 @@ class Quiz {
   startGame() {
     this.active = true;
   }
+
+  updateScore() {
+    this.score = this.score + 1;
+  }
+
+  endGame() {
+    this.active = false;
+    this.scoreHistory.push(this.score);
+  }
 }
 
 export default Quiz;
