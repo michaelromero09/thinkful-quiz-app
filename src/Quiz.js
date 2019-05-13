@@ -9,10 +9,16 @@ class Quiz {
     this.unasked = [];
     // Array of Question instances
     this.asked = [];
+    this.score = 0;
+    this.scoreHistory = [];
     this.active = false;
 
     // TASK: Add more props here per the exercise
 
+  }
+
+  askQuestion() {
+    this.asked.push( this.unasked.pop() );
   }
 
   // Example method:
