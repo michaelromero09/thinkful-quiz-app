@@ -4,14 +4,21 @@ import Renderer from './lib/Renderer';
 
 class QuizStatus extends Renderer {
   template() {
-    if (!this.model.active && this.model.askedQuestions.length === 0) {
-      return `<div>Quiz Status</div>`;
+    let currentHighScore = 0;
+    let status = 'Inactive';
+    if (Math.max(... this.model.scoreHistory) > 0) {
+      currentHighScore = Math.max(... this.model.scoreHistory);
+    }
+    if (this.model.active) {
+      status = `${this.model.askedQuestions.length} out of ${this.model.askedQuestions.length + this.model.unasked.length}`
     }
     return `
       <div>
-        Status
+        Score: ${this.model.score}
+        High Score: ${currentHighScore}
+        Progress: ${status}
       </div>
-      `
+      `;
   }
 }
 
