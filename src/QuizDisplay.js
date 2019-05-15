@@ -6,7 +6,10 @@ class QuizDisplay extends Renderer {
   template() {
     if (!this.model.active && this.model.askedQuestions.length === 0) {
       return `
-        <div>Intro Screen</div>
+        <div>
+          <p>Welcome to our Trivia Quiz</p>
+          <p>Test your smarts and see how high you can score</p>
+        </div>
         <button class="start">Start</button>
       `;
     } else if (this.model.active && this.model.askedQuestions.length && !this.model.askedQuestions[this.model.askedQuestions.length- 1].userAnswer) {
@@ -17,29 +20,41 @@ class QuizDisplay extends Renderer {
       let options = answers.map((answer, index) => {
         console.log(`answer: ${answer}`)
         return `<input id="answer-${index}" type="radio" name="answer" value="${answer}">
-          <label for="answer-${index}">${answer}</label>`;
+          <label for="answer-${index}">${answer}</label>
+          <br>`;
       }).join('');
       return `
         <div>
-          <p>${question.text}<p>
+          <p class="question">${question.text}</p>
           <form>
-            ${options}
-            <input type=submit>
+            <div>
+              ${options}
+            </div>
+            <button type="submit">Submit</button>
           </form>
         </div>
       `;
     } else if (this.model.active && this.model.askedQuestions[this.model.askedQuestions.length- 1].userAnswer) {
+      let question = this.model.askedQuestions[this.model.askedQuestions.length -1];
       if (this.model.isLastCorrect) {
         this.model.isLastCorrect = false;
         return `
           <div>
-            <p>Correct Answer</p>
+            <p class="question">${question.text}</p>
+            <p>You got it!</p>
+            <p>The correct answer was:</p>
+            <p class="correct-answer">${question.correctAnswer}</p>
           </div>
           <button class="continue">Continue</button>`
       } else {
         return `
         <div>
-          <p>Incorrect Answer</p>
+          <p class="question">${question.text}</p>
+          <p>Sorry, that's incorrect</p>
+          <p>You answered</p>
+          <p class="incorrect-answer">${question.userAnswer}</p>
+          <p>The correct answer was:</p>
+          <p class="correct-answer">${question.correctAnswer}</p>
         </div>
         <button class="continue">Continue</button>`
       }

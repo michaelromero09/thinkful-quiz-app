@@ -15,8 +15,12 @@ class Question {
 
   randomizeAnswers() {
     let answers = this.answers;
-    let index = Math.floor(Math.random() * (answers.length + 1));
-    answers.splice(index, 0, this.correctAnswer);
+    if (this.answers.length === 3) {
+      let index = Math.floor(Math.random() * (answers.length + 1));
+      answers.splice(index, 0, this.correctAnswer);
+    } else {
+      answers = ['True', 'False'];
+    }
     return answers;
   }
 

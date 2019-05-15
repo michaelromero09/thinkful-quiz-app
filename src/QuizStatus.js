@@ -14,9 +14,9 @@ class QuizStatus extends Renderer {
     }
     return `
       <div>
-        Score: ${this.model.score}
-        High Score: ${currentHighScore}
-        Progress: ${status}
+        <span>Score: ${this.model.score}</span>
+        <span>High Score: ${currentHighScore}</span>
+        <span>Progress: ${status}</span>
       </div>
       `;
   }
