@@ -63,7 +63,7 @@ class QuizDisplay extends Renderer {
       if (Math.max(... this.model.scoreHistory) === this.model.score) {
         newHighScore = `
         <div>
-          <p>That's a new High Score!</p>
+          <p>That's a High Score!</p>
         </div>
         `
       }
